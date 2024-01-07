@@ -2,6 +2,9 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
@@ -13,6 +16,11 @@ import umc.spring.domain.mapping.MemberPrefer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+// null인 값을 그대로 insert 하는 문제 예방
+// (insert, update시 null인 경우 그냥 쿼리를 보내지 않도록 함)
+@DynamicUpdate
+@DynamicInsert
 
 @Entity
 @Getter
@@ -50,9 +58,10 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
-    @Column(nullable = false, length = 50)
+    // @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
 
