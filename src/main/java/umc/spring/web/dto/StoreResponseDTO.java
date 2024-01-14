@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 public class StoreResponseDTO {
 
+    // TODO 메서드 명 변경
     @Builder
     @Getter
     @NoArgsConstructor
