@@ -1,4 +1,4 @@
-package umc.spring.service.MemberService;
+package umc.spring.service.memberService;
 
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;

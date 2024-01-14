@@ -7,15 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class StoreResponseDTO {
+public class ReviewResponseDTO {
 
-    // TODO 메서드 명 변경
-    @Builder
     @Getter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class registerStoreResultDTO {
-        Long storeId;
+    public static class CreateReviewResultDTO {
+        Long reviewId;
         LocalDateTime createdAt;
     }
 }

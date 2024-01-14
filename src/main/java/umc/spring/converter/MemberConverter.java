@@ -30,6 +30,8 @@ public class MemberConverter {
                 break;
         }
 
+        // TODO Birth 값 처리
+
         return Member.builder()
                 .name(request.getName())
                 .gender(gender)
