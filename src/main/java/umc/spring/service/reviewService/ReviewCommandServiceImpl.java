@@ -14,8 +14,8 @@ import umc.spring.domain.Review;
 import umc.spring.web.dto.ReviewRequestDTO;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional(readOnly = true) // 1. readOnly -> 이거 적용하면 존재하지 않는 사용자 에러 먼저 뜨게 함
 public class ReviewCommandServiceImpl implements ReviewCommandService {
 
     private final MemberRepository memberRepository;
@@ -23,6 +23,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     private final ReviewRepository reviewRepository;
 
     @Override
+    @Transactional // 2. 1번이랑 이 어노테이션 같이 적용해야 존재하지 않는 사용자 에러 먼저 뜨게 함
     public Review createReview(Long memberId, Long storeId, ReviewRequestDTO.ReviewDTO request) {
         Review review = ReviewConverter.toReview(request);
 
