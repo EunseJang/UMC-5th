@@ -18,6 +18,8 @@ import umc.spring.validation.annotation.ExistMember;
 import umc.spring.validation.annotation.ExistStore;
 import umc.spring.web.dto.*;
 
+import java.io.IOException;
+
 @Validated
 @RestController
 @RequiredArgsConstructor
@@ -38,10 +40,10 @@ public class StoreRestController {
     }
 
     /** 가게 리뷰 등록 */
-    @PostMapping("/{storeId}/reviews")
+    @PostMapping(value = "/{storeId}/reviews", consumes = "multipart/form-data")
     public ApiResponse<ReviewResponseDTO.CreateReviewResultDTO> createReview(@ExistStore @PathVariable(name = "storeId") Long storeId,
                                                                              @ExistMember @RequestParam(name = "memberId") Long memberId,
-                                                                             @RequestBody @Valid ReviewRequestDTO.ReviewDTO request) {
+                                                                             @RequestBody @Valid ReviewRequestDTO.ReviewDTO request) throws IOException {
         Review review = reviewCommandService.createReview(memberId, storeId, request);
         return ApiResponse.onSucces(ReviewConverter.toCreateReviewResultDTO(review));
     }
