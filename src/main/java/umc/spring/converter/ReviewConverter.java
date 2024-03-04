@@ -2,6 +2,7 @@ package umc.spring.converter;
 
 import org.springframework.data.domain.Page;
 import umc.spring.domain.Review;
+import umc.spring.domain.ReviewImage;
 import umc.spring.web.dto.ReviewRequestDTO;
 import umc.spring.web.dto.ReviewResponseDTO;
 
@@ -11,11 +12,17 @@ import java.util.stream.Collectors;
 
 public class ReviewConverter {
 
-    // TODO 리뷰 이미지 추가
     public static Review toReview(ReviewRequestDTO.ReviewDTO request) {
         return Review.builder()
                 .content(request.getContent())
                 .score(request.getScore())
+                .build();
+    }
+
+    public static ReviewImage toReviewImage(String imageUrl, Review review) {
+        return ReviewImage.builder()
+                .imageUrl(imageUrl)
+                .review(review)
                 .build();
     }
 
